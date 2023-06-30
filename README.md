@@ -33,6 +33,7 @@ and `PYTHONPATH` respectively, by doing:
 export LD_LIBRARY_PATH=$PWD/../install/lib:$LD_LIBRARY_PATH
 export PYTHONPATH=$PWD/../install/python:$PYTHONPATH
 ```
+and then run the examples like this:
 
 ``` bash
 k4run ../k4ProjectTemplate/options/createHelloWorld.py
