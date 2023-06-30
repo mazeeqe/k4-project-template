@@ -4,7 +4,6 @@
 This repository can be a starting point and template for projects using the Key4HEP software stack.
 
 
-
 ## Dependencies
 
 * ROOT
@@ -18,24 +17,26 @@ This repository can be a starting point and template for projects using the Key4
 ## Installation
 
 
-```
+``` bash
 source /cvmfs/sw.hsf.org/key4hep/setup.sh
 mkdir build install
 cd build;
 cmake .. -DCMAKE_INSTALL_PREFIX=../install
 make install
-
-
 ```
 
 ## Execute Examples
 
-
+Make sure that `../install/lib` and `../install/python` are in `LD_LIBRARY_PATH`
+and `PYTHONPATH` respectively, by doing:
+``` bash
+export LD_LIBRARY_PATH=$PWD/../install/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=$PWD/../install/python:$PYTHONPATH
 ```
-k4run ../k4TestFWCore/options/createHelloWorld.py
 
-k4run ../k4TestFWCore/options/createExampleEventData.py
-
+``` bash
+k4run ../k4ProjectTemplate/options/createHelloWorld.py
+k4run ../k4ProjectTemplate/options/createExampleEventData.py
 ```
 
 
