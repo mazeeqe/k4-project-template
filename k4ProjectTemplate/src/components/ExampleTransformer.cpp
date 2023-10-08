@@ -16,30 +16,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#pragma once
 
-// GAUDI
 #include "Gaudi/Property.h"
-#include "GaudiAlg/GaudiAlgorithm.h"
+#include "GaudiAlg/Transformer.h"
 
-class EmptyAlg : public GaudiAlgorithm {
-public:
-  explicit EmptyAlg(const std::string&, ISvcLocator*);
-  virtual ~EmptyAlg();
-  /**  Initialize.
-   *   @return status code
-   */
-  virtual StatusCode initialize() final;
-  /**  Execute.
-   *   @return status code
-   */
-  virtual StatusCode execute() final;
-  /**  Finalize.
-   *   @return status code
-   */
-  virtual StatusCode finalize() final;
+// Define BaseClass_t
+#include "k4FWCore/BaseClass.h"
 
-private:
-  // member variable
-  int m_member = 0;
+#include <string>
+
+struct ExampleTransformer final : Gaudi::Functional::Transformer<int(const int&), BaseClass_t> {
+  ExampleTransformer(const std::string& name, ISvcLocator* svcLoc)
+      : Transformer(name, svcLoc, KeyValue("ExampleTransformerInputLocation", "/InputExampleInt"),
+                    {KeyValue("ExampleTransformerOutputLocation", "/OutputExampleInt")}) {}
+
+  int operator()(const int& input) const override {
+    info() << "ExampleInt = " << input << endmsg;
+    return input + 1;
+  }
 };
+
+DECLARE_COMPONENT(ExampleTransformer)

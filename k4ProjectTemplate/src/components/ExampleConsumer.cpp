@@ -16,16 +16,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include "EmptyAlg.h"
 
-DECLARE_COMPONENT(EmptyAlg)
+#include "Gaudi/Property.h"
+#include "GaudiAlg/Consumer.h"
 
-EmptyAlg::EmptyAlg(const std::string& aName, ISvcLocator* aSvcLoc) : GaudiAlgorithm(aName, aSvcLoc) {}
+// Define BaseClass_t
+#include "k4FWCore/BaseClass.h"
 
-EmptyAlg::~EmptyAlg() {}
+#include <string>
 
-StatusCode EmptyAlg::initialize() { return StatusCode::SUCCESS; }
+struct ExampleConsumer final : Gaudi::Functional::Consumer<void(const int&), BaseClass_t> {
+  ExampleConsumer(const std::string& name, ISvcLocator* svcLoc)
+      : Consumer(name, svcLoc, KeyValue("ExampleConsumerInputLocation", "/ExampleInt")) {}
 
-StatusCode EmptyAlg::execute() { return StatusCode::SUCCESS; }
+  void operator()(const int& input) const override { info() << "ExampleInt = " << input << endmsg; }
+};
 
-StatusCode EmptyAlg::finalize() { return StatusCode::SUCCESS; }
+DECLARE_COMPONENT(ExampleConsumer)
