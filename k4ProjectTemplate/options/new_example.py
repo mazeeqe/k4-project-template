@@ -24,10 +24,9 @@ from k4FWCore import IOSvc
 
 from Configurables import HelloWorldAlg, MCConsumerAlg
 iosvc = IOSvc("IOSvc")
-#iosvc.Input = "output_k4test_exampledata.root"
+
 iosvc.Input = "/afs/desy.de/user/b/bortolet/code/k4-project-template/k4ProjectTemplate/options/input_files/Dirac-Dst-E250-e2e2h_inv.eL.pR_bg-00002.root"
 
-#iosvc.CollectionNames = ["ExampleParticles"]
 iosvc.CollectionNames = ["PandoraPFOs", "PrimaryVertex", "PandoraClusters", "MarlinTrkTracks", "EventHeader", "MCParticlesSkimmed"]
 
 ApplicationMgr(TopAlg=[],

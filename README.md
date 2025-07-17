@@ -63,6 +63,10 @@ k4run ../k4ProjectTemplate/options/createHelloWorld.py
 k4run ../k4ProjectTemplate/options/createExampleEventData.py
 ```
 
+## Annotations
+
+For some reason running the examples is fine but my checkcollections isin't.
+
 
 ## References:
 These could perhaps be usefule for newcomers.
